@@ -34,10 +34,14 @@ BASEAMI                = "#{NAME}.json"
 AWS_KEY_PAIR           = "us-west-2"
 
 # which region should the instance be stood up in
-REGION                 = "us-west-2"
+region                 = ENV["AMI_REGION"]
+region                 = "us-west-2" unless region =~ /\S/
+REGION                 = region
 
 # the base ami to use as a starting point
-AMI                    = "ami-70f96e40"
+ami                    = ENV["AMI_ID"]
+ami                    = "ami-70f96e40" unless ami =~ /\S/
+AMI                    = ami
 
 # what instance type to use by default
 INSTANCE_TYPE          = "m1.medium"
