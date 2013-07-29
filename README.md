@@ -8,7 +8,7 @@ Builds the base AMI usable by various projects
 Base AMI is configured via the use of environment variables.  The following environment variables:
 
 |Name|Required|Description|
-|-|-|-|
+| :--- | :----: | :------ |
 |AWS_ACCESS_KEY_ID|yes|aws credential|
 |AWS_SECRET_ACCESS_KEY|yes|aws credential|
 |AMI_USER|yes|the user that will be created within the AMI|
