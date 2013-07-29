@@ -1,4 +1,4 @@
 baseami
 =======
 
-Create a base amazon AMI.
+Builds the base AMI usable by various projects
