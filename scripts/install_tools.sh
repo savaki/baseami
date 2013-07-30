@@ -20,22 +20,14 @@ set -e
 #---------------------------------------------------------------------------
 # install the s3 utility for uploading / downloading content to s3
 #---------------------------------------------------------------------------
+cat <<EOF | sudo tee -a /etc/apt/sources.list
+deb http://archive.mattho.com/ precise universe
+EOF
+
 sudo apt-get update
 sudo apt-get --only-upgrade install -y libapt-pkg4.12
-for pkg in s3_1_amd64.deb hosts_1.0_amd64.deb apt-transport-s3_1.1.1ubuntu2_amd64.deb
+for pkg in s3cp hosts apt-transport-s3
 do
-	url="http://d3a9nbnkw85yq1.cloudfront.net/ubuntu/precise/${pkg}"
-
-	echo "downloading ${pkg}, ${url}"
-	wget --quiet "${url}"
-	
-	echo "installing package, ${pkg} => dpkg -i ${pkg}"
-	sudo dpkg -i ${pkg}
-	
-	# remove the file after we're done
-	echo "cleaning up package"
-	rm -f ${pkg}
+	sudo apt-get install -y --force-yes ${pkg}
 done
-
-sudo apt-get install -y s3cmd
 
