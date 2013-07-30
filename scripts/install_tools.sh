@@ -22,7 +22,7 @@ set -e
 #---------------------------------------------------------------------------
 sudo apt-get update
 sudo apt-get --only-upgrade install -y libapt-pkg4.12
-for pkg in hosts_1.0_amd64.deb apt-transport-s3_1.1.1ubuntu2_amd64.deb
+for pkg in s3_1_amd64.deb hosts_1.0_amd64.deb apt-transport-s3_1.1.1ubuntu2_amd64.deb
 do
 	url="http://d3a9nbnkw85yq1.cloudfront.net/ubuntu/precise/${pkg}"
 
