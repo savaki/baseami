@@ -26,7 +26,7 @@ EOF
 
 sudo apt-get update
 sudo apt-get --only-upgrade install -y libapt-pkg4.12
-for pkg in s3cp hosts apt-transport-s3
+for pkg in s3cp hosts apt-transport-s3 secret-tool
 do
 	sudo apt-get install -y --force-yes ${pkg}
 done

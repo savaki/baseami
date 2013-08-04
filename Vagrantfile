@@ -24,7 +24,6 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, :path => "tmp/setup_user.sh"
   config.vm.provision :shell, :path => "scripts/install_tools.sh"
   config.vm.provision :shell, :path => "tmp/install_access_keys.sh"
-  config.vm.provision :shell, :path => "tmp/setup_apt.sh"
   config.vm.provision :shell, :path => "tmp/install_mysql.sh"
 
   config.vm.provider :virtualbox do |vb|

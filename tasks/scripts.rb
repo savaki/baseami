@@ -31,7 +31,8 @@ def config
     :AWS_SECRET_ACCESS_KEY => secretAccessKey,
     :AMI_USER              => amiUser,
     :AMI_DATABASES         => databases,
-    :AMI_BUCKET            => AMI_BUCKET
+    :S3_BUCKET             => S3_BUCKET,
+    :S3_REGION             => S3_REGION
   }
 end
 
@@ -44,11 +45,6 @@ end
 
 def setup_user_script
   erb = ERB.new(File.open("scripts/setup_user.sh.erb").read)
-  erb.result binding
-end
-
-def setup_apt_script
-  erb = ERB.new(File.open("scripts/setup_apt.sh.erb").read)
   erb.result binding
 end
 

@@ -19,7 +19,8 @@ AWS_SECRET_ACCESS_KEY  = ENV["AWS_SECRET_ACCESS_KEY"]
 AMI_USER               = ENV["AMI_USER"]
 
 # the bucket that contains our deb repository for use with apt-s3
-AMI_BUCKET             = ENV["AMI_BUCKET"]
+S3_BUCKET              = ENV["S3_BUCKET"]
+S3_REGION              = ENV["S3_REGION"]
 
 # the name of the artifact that can be passed from stage to stage
 ARTIFACT               = "artifact.json"
@@ -57,5 +58,5 @@ raise "AWS_ACCESS_KEY_ID not set!"     unless AWS_ACCESS_KEY_ID     =~ /\S/
 raise "AWS_SECRET_ACCESS_KEY not set!" unless AWS_SECRET_ACCESS_KEY =~ /\S/
 
 raise "AMI_USER not set!"              unless AMI_USER              =~ /\S/
-raise "AMI_BUCKET not set!"            unless AMI_BUCKET            =~ /\S/
+raise "S3_BUCKET not set!"             unless S3_BUCKET             =~ /\S/
 

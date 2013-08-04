@@ -37,7 +37,6 @@ def generate_baseami_json
         "tmp/setup_user.sh",
         "scripts/install_tools.sh",
         "tmp/install_access_keys.sh",
-        "tmp/setup_apt.sh",
         "tmp/install_mysql.sh"
       ]
     }

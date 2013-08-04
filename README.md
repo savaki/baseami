@@ -12,9 +12,9 @@ Base AMI is configured via the use of environment variables.  The following envi
 |AWS_ACCESS_KEY_ID|yes|aws credential|
 |AWS_SECRET_ACCESS_KEY|yes|aws credential|
 |AMI_USER|yes|the user that will be created within the AMI|
-|AMI_BUCKET|yes|the name of the bucket baseami should to mount an S3 bucket as a debian repo|
 |AMI_ID|no|the initial ami to use.  defaults to ami-70f96e40|
 |AMI_REGION|no|which region the AMI should be created in (default: us-west-2)|
+|S3_BUCKET|yes|the name of the bucket baseami should to mount an S3 bucket as a debian repo|
 
 ## artifact.json
 

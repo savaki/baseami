@@ -38,9 +38,6 @@ task :render_scripts do
   File.open("tmp/setup_user.sh", "w") do |io| 
     io.puts setup_user_script
   end
-  File.open("tmp/setup_apt.sh", "w") do |io| 
-    io.puts setup_apt_script
-  end
   File.open("tmp/install_mysql.sh", "w") do |io| 
     io.puts install_mysql_script
   end
