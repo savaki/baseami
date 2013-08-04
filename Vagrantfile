@@ -20,9 +20,10 @@ Vagrant.configure("2") do |config|
 
   config.vm.network :public_network
 
-  config.vm.provision :shell, :path => "scripts/install_cloud_init.sh"
+  config.vm.provision :shell, :path => "tmp/install_cloud_init.sh"
   config.vm.provision :shell, :path => "tmp/setup_user.sh"
-  config.vm.provision :shell, :path => "scripts/install_tools.sh"
+  config.vm.provision :shell, :path => "tmp/setup_secret.sh"
+  config.vm.provision :shell, :path => "tmp/install_tools.sh"
   config.vm.provision :shell, :path => "tmp/install_access_keys.sh"
   config.vm.provision :shell, :path => "tmp/install_mysql.sh"
 

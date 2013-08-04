@@ -12,6 +12,21 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
+# allow for easy assignment of environment variables
+#
+def env default, *names
+  value = nil
+  names.each do |name|
+    if ENV[name] =~ /\S/
+      value = ENV[name]
+      break
+    end
+  end
+
+  value = default unless value =~ /\S/
+  value
+end
+
 AWS_ACCESS_KEY_ID      = ENV["AWS_ACCESS_KEY_ID"]
 AWS_SECRET_ACCESS_KEY  = ENV["AWS_SECRET_ACCESS_KEY"]
 
@@ -20,7 +35,9 @@ AMI_USER               = ENV["AMI_USER"]
 
 # the bucket that contains our deb repository for use with apt-s3
 S3_BUCKET              = ENV["S3_BUCKET"]
-S3_REGION              = ENV["S3_REGION"]
+S3_REGION              = env("us-west-2", "S3_REGION")
+
+SECRET                 = env("", "SECRET")
 
 # the name of the artifact that can be passed from stage to stage
 ARTIFACT               = "artifact.json"
@@ -32,26 +49,19 @@ NAME                   = "baseami"
 BASEAMI                = "#{NAME}.json"
 
 # the name of the aws keypair to associate with the test instance
-AWS_KEY_PAIR           = "us-west-2"
+AWS_KEY_PAIR           = env("us-west-2", "AMI_KEY_PAIR")
 
 # which region should the instance be stood up in
-region                 = ENV["AMI_REGION"]
-region                 = "us-west-2" unless region =~ /\S/
-REGION                 = region
+REGION                 = env("us-west-2", "AMI_REGION")
 
 # the base ami to use as a starting point
-ami                    = ENV["AMI_ID"]
-ami                    = "ami-70f96e40" unless ami =~ /\S/
-AMI                    = ami
+AMI                    = env("ami-70f96e40", "AMI_ID")
 
 # what instance type to use by default
-INSTANCE_TYPE          = "m1.medium"
-
+INSTANCE_TYPE          = env("m1.medium", "AMI_INSTANCE_TYPE")
 
 # the build number for the app
-version               = ENV["GO_PIPELINE_COUNTER"]
-version               = "SNAPSHOT-#{Time.now.to_i}" unless version =~ /\S/
-VERSION               = version
+VERSION                = env("SNAPSHOT-#{Time.now.to_i}", "GO_PIPELINE_COUNTER")
 
 
 raise "AWS_ACCESS_KEY_ID not set!"     unless AWS_ACCESS_KEY_ID     =~ /\S/

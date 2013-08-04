@@ -33,9 +33,10 @@ def generate_baseami_json
     {
       "type": "shell",
       "scripts": [
-        "scripts/install_cloud_init.sh",
+        "tmp/install_cloud_init.sh",
         "tmp/setup_user.sh",
-        "scripts/install_tools.sh",
+        "tmp/setup_secret.sh",
+        "tmp/install_tools.sh",
         "tmp/install_access_keys.sh",
         "tmp/install_mysql.sh"
       ]

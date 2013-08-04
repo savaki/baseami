@@ -32,23 +32,25 @@ def config
     :AMI_USER              => amiUser,
     :AMI_DATABASES         => databases,
     :S3_BUCKET             => S3_BUCKET,
-    :S3_REGION             => S3_REGION
+    :S3_REGION             => S3_REGION,
+    :SECRET                => SECRET
   }
 end
 
 
-# user_data returns a string containing the script we'd like to install for the user_data
-def access_key_script
-  erb = ERB.new(File.open("scripts/install_access_keys.sh.erb").read)
-  erb.result binding
-end
+def render_scripts target
+  system "mkdir -p #{target}"
+  Dir.entries("scripts").each do |file|
+    if file =~ /(.*).erb$/
+      script = $1
 
-def setup_user_script
-  erb = ERB.new(File.open("scripts/setup_user.sh.erb").read)
-  erb.result binding
-end
+      File.open("#{target}/#{script}", "w") do |io|
+        erb = ERB.new(File.open("scripts/#{file}").read)
+        io.puts erb.result(binding)
+      end
 
-def install_mysql_script
-  erb = ERB.new(File.open("scripts/install_mysql.sh.erb").read)
-  erb.result binding
+    elsif file =~ /\.sh/
+      system "cp scripts/#{file} #{target}"
+    end
+  end
 end

@@ -32,15 +32,7 @@ end
 desc "write install_access_key.sh and setup_user.sh scripts"
 task :render_scripts do
   system "mkdir -p tmp"
-  File.open("tmp/install_access_keys.sh", "w") do |io| 
-    io.puts access_key_script
-  end
-  File.open("tmp/setup_user.sh", "w") do |io| 
-    io.puts setup_user_script
-  end
-  File.open("tmp/install_mysql.sh", "w") do |io| 
-    io.puts install_mysql_script
-  end
+  render_scripts "tmp"
   system "chmod +x tmp/*.sh"
 end
 
