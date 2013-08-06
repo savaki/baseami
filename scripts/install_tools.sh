@@ -31,3 +31,5 @@ do
 	sudo apt-get install -y --force-yes ${pkg}
 done
 
+sudo apt-get install -y nmap
+
